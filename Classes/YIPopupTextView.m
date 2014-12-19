@@ -582,11 +582,19 @@ typedef enum {
                 break;
             case UIInterfaceOrientationLandscapeLeft:
                 // keyboard at portrait-right
-                popupViewHeight = keyboardRect.origin.x - bgOrigin.x - topMargin;
+                if(IS_IOS_AT_LEAST(@"8.0")) {
+                    popupViewHeight = keyboardRect.origin.y - bgOrigin.y - topMargin;
+                } else {
+                    popupViewHeight = keyboardRect.origin.x - bgOrigin.x - topMargin;
+                }
                 break;
             case UIInterfaceOrientationLandscapeRight:
                 // keyboard at portrait-left
-                popupViewHeight = bgOrigin.x - keyboardRect.origin.x - keyboardRect.size.width - topMargin;
+                if(IS_IOS_AT_LEAST(@"8.0")) {
+                    popupViewHeight = keyboardRect.origin.y - bgOrigin.y - topMargin;
+                } else {
+                    popupViewHeight = bgOrigin.x - keyboardRect.origin.x - keyboardRect.size.width - topMargin;
+                }
                 break;
             default:
                 break;
